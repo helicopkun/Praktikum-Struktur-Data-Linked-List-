@@ -48,9 +48,7 @@ bool validPilihan,
      keluar = false;
 int jumlahMontir = 0;
 
-bool NewCustomer() { //tambah di belakang list - queue
-    Customer *baruCustomer = new Customer;
-    
+bool NewCustomer() { //tambah di belakang list - queue 
     cout << "Nama Pelanggan: ";
     getline(cin, namaInput);
 
@@ -60,6 +58,8 @@ bool NewCustomer() { //tambah di belakang list - queue
         cur = cur->next;
     }
     if (cur != NULL) return false; //kalo ada, bukan customer baru
+    
+    Customer *baruCustomer = new Customer;
     
     cout << "No Telp Pelanggan: ";
     getline(cin, baruCustomer->nomor_telepon);
@@ -89,7 +89,7 @@ bool NewCustomer() { //tambah di belakang list - queue
     return true;
 }
 
-void NewService() { //tambah di awal list - stack
+void NewService() {
     Service *baruService = new Service;
 
     cout << "Model Mobil: ";
@@ -508,7 +508,7 @@ Pilihan: )";
     else if (pilihan == "1") {
         cout << "====== All Services ======\n";
         if (headHistoryDue == NULL) {
-            cout << "Antrean kosong!\n";
+            cout << "Empti :C\n\n";
             return;
         }
         Services(headHistoryDue, "All", false, true);
@@ -646,5 +646,6 @@ int main() {
 
     while (!keluar) MenuCustomer();
     cout << "Bye! \n\n";
+
 
 }
