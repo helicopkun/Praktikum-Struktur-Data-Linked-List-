@@ -406,8 +406,16 @@ Pilihan: )";
             "Pilih Montir!\n\n";
             TampilMechanic(true);
             cout << "\nPilihan: ";
-            cin >> index;
-            cin.ignore();
+            while (!(cin >> index)) { // Selama input BUKAN angka
+                system("cls");
+                cout << "====== Jobs Done======\n" <<
+                "Pilih Montir!\n\n";
+                TampilMechanic(true);
+                cout << "\nPilihan: ";
+                cin.clear(); // 1. Bersihkan status error cin
+                cin.ignore(1000, '\n'); // 2. Buang karakter sampah di buffer (maks 1000 karakter)
+            }
+            cin.ignore(1000, '\n');
             cout << endl;
             validPilihan = true;
             MechanicFinishJob(FindMechanicName(index, true));
@@ -431,8 +439,16 @@ Pilihan: )";
             "Pilih Montir!\n\n";
             TampilMechanic(false);                      
             cout << "\nPilihan: ";
-            cin >> index;
-            cin.ignore();
+            while (!(cin >> index)) { // Selama input BUKAN angka
+                system("cls");
+                cout << "====== Jobs Done======\n" <<
+                "Pilih Montir!\n\n";
+                TampilMechanic(false);
+                cout << "\nPilihan: ";
+                cin.clear(); // 1. Bersihkan status error cin
+                cin.ignore(1000, '\n'); // 2. Buang karakter sampah di buffer (maks 1000 karakter)
+            }
+            cin.ignore(1000, '\n');
             cout << endl;
             validPilihan = true;
             MechanicJobs(FindMechanicName(index, false));
