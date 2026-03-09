@@ -509,6 +509,8 @@ Pilihan: )";
         cout << "====== All Services ======\n";
         if (headHistoryDue == NULL) {
             cout << "Empti :C\n\n";
+            cout << "Press enter to go back...";
+            cin.get();
             return;
         }
         Services(headHistoryDue, "All", false, true);
@@ -569,6 +571,8 @@ int main() {
         newDue->deskripsi_kendala = deskripsi_kendala_due;
         newDue->nama_montir = nama_montir_due;
         newDue->tanggal = tanggaldue;
+
+
 
         Customer* cur = headCustomer; //cur = cursor customer 
         while(cur != NULL){
