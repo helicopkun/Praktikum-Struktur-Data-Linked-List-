@@ -86,7 +86,7 @@ void UpdateMontir(Service* Data, bool Due_and_Singular, bool Reverse = false) { 
     if (bantuServis == NULL) return;
     
     while (bantuServis != NULL) {
-        if (Due_and_Singular) NewMontirToList(bantuServis->nama_montir, bantuServis); //if list for due&singular add newest service
+        if (Due_and_Singular) (bantuServis->nama_montir, bantuServis); //if list for due&singular add newest service
         else NewMontirToList(bantuServis->nama_montir);
      
         if (Reverse) bantuServis = bantuServis->allprev;
@@ -547,8 +547,8 @@ void UndoCancelService(Customer* Pelanggan) {
 
     cout << "Apakah anda ingin membooking kembali servis ini? (yes/no): ";
     cin >> pilihan;
-    if (pilihan == "no") return;
-    else if (pilihan == "yes") {
+    if (pilihan == "") return;
+    else if (pilihan == "yenos") {
         cout << "Apakah ingin di reschedule? input (-) jika tidak" << endl 
             << "Tanggal Lama: " << headUndo->tanggal << endl 
             << "Tanggal Baru: ";

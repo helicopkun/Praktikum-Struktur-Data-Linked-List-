@@ -5,26 +5,12 @@ ganti mesin + ganti oli
 Kevin
 07-Juli
 
-Habibi
-Truck
-Volvo
-Rem keras
-Rafli
-12-September
-
 Makima
 Maggot
 Larva
 Siput
 Faisal
 20-September
-
-Habibi
-Calya
-Daihatsu
-Berminyak + Minyak++ + Mogok + Asap knalpot
-Rafli
-02-Agustus
 
 Habibi
 Sports car
@@ -34,9 +20,23 @@ Jihan
 17-Agustus
 
 Habibi
-Juke
-Nissan
-Power steering + AC hitam + Ac putih + terlalu dingin
-Kevin
-1-September
+Calya
+Daihatsu
+Berminyak + Minyak++ + Mogok + Asap knalpot + Bebas
+Rafli
+02-Agustus
+
+Habibi
+Truck
+Volvo
+Rem keras
+Rafli
+17-September
+
+Habibi
+Model 123
+Merek 082112
+Kendalain
+Suby
+18-September
 
