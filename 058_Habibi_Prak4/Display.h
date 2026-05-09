@@ -250,10 +250,10 @@ void NewService(Customer* Pelanggan = NULL) {
     getline(cin, tanggal);
     SortByDate();
 
-    if (Pelanggan)
-        baruService->tanggal = CheckDate(tanggal, Pelanggan->HeadServiceDue);
+    if (Pelanggan)                                                            //gatau penting atau enggak
+        baruService->tanggal = CheckDate(tanggal, Pelanggan->HeadServiceDue); //customer tidak bisa menambah lebih awal dari tanggal paling awal
     else
-        baruService->tanggal = CheckDate(tanggal);
+        baruService->tanggal = CheckDate(tanggal); // admin bisa menambah sebelum tanggal awal
 
     SortByQueue();
     if (Pelanggan) { //kalo dari "menu booking customer" tidak perlu cek / daftar ulang

@@ -182,9 +182,9 @@ void SortByQueue(){ //default, reset and read back from file
     data_DueService.close();
 }
 
-void SortByDate(){ // Selection sort (find minimum, extract to left)
-    Service* min = headHistoryDue;
-    int hari, bulan, tahun;
+void SortByDate(){ // Selection sort (find minimum, extract to left) // 1 4 5 6 2 3
+    Service* min = headHistoryDue;                                   // i c
+    int hari, bulan, tahun;                                          // m
     sscanf(min->tanggal.c_str(), "%d-%d-%d", &hari, &bulan, &tahun);
     
     Service* index = headHistoryDue;
