@@ -280,7 +280,8 @@ void menu_search (User* u, string option) { // option = ["match", "exact"]
         if(!result){
             cout << "No Movie with the name - " << keyword << '\n';
             press_enter();
-            return;
+            system("cls");
+            return menu_search(u, option);
         }
         tampil_movie_detail(result);
 

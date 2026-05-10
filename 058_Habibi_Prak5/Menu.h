@@ -30,6 +30,7 @@ void main_menu(User* u) {
     else if (pilihan == 6) menu_all_movies(u, "Film / Series");
     else if (pilihan == 7 && u->isAdmin) menu_tambah_movie();
 
+    system("cls");
     main_menu(u);
 }
 
