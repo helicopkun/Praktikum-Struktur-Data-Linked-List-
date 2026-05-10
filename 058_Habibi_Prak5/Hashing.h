@@ -3,7 +3,7 @@
 
 using namespace std;
 #include <string>
-
+#include <iostream>
 string trim(const string& s) {
     int start = s.find_first_not_of(" \t\n\r");
     int end   = s.find_last_not_of(" \t\n\r");

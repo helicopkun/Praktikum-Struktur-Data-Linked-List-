@@ -165,7 +165,7 @@ void menu_tambah_movie() {
     bool valid = false;
     for (int i = 0; i < genres.size(); i++) {
         if (genres[i] == ',') {
-            i += 2; //skip space before another genre
+            i++; //skip space before another genre
             Genre * g = (Genre*) (Genres.get_exact(genre));
 
             if (g) { link_genre_to_movie(g, newM);  valid = true; } 
@@ -193,7 +193,7 @@ void menu_tambah_movie() {
     string relate = "";
     for (int i = 0; i < related.size(); i++) {
         if (related[i] == ',') {
-            i += 2; //skip space before another relate
+            i++; //skip space before another relate
             exist = search_movie_BST(BST, get_key(relate));
 
             if (exist) link_movie_to_universe(newM, exist);

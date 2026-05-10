@@ -54,17 +54,15 @@ void search_match_movie_BST(Movies* root, const string& prefix, Movies* result[]
 void get_all_movie_BST(Movies* root, Movies* result[], int& count, string option) { //in-order, option = ["Film / Series", "Film", "Series"]
     if (!root) return;
     get_all_movie_BST(root->left,  result, count, option);
-
+    
     if (option == "Film / Series") result[count++] = root;
 
-    else if (option == "Film") 
-        if (root->is_film())
-            result[count++] = root;
-
-    else if (option == "Series") 
-        if (!root->is_film())
-            result[count++] = root;
-
+    else if (option == "Film") {
+        if (root->is_film()) result[count++] = root;
+    }
+    else if (option == "Series") {
+        if (!root->is_film()) result[count++] = root;
+    }
     get_all_movie_BST(root->right, result, count, option);
 }
 

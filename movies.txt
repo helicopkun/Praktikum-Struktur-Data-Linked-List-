@@ -46,6 +46,14 @@ Inception| Syncopy| 0| 0| 8.8
 Sci-Fi| Action| Thriller| 
 The Dark Knight| Tenet| Interstellar| 
 
+Cyberpunk Edgerunner| TRIGGER| 24| 1| 0
+Sci-Fi| Action| Thriller| 
+
+
+Iron Lung| Troublemaker Studios| 0| 0| 0
+Thriller| Horror| 
+
+
 The Avengers| Marvel Studios| 0| 0| 9
 Adventure| Sci-Fi| Action| 
 Avengers Age of Ultron| Thor| Iron Man| Iron Man 2| Iron Man 3| Captain America The First Avenger| 
@@ -61,6 +69,10 @@ Iron Man 2| The Avengers|
 Tenet| Syncopy| 0| 0| 7.3
 Sci-Fi| Action| Thriller| 
 Inception| Interstellar| 
+
+Running in the 90's| Cowboy Studio| 50| 4| 0
+Adventure| Action| 
+
 
 Thor| Marvel Studios| 0| 0| 7.9
 Adventure| Fantasy| Action| 
@@ -78,7 +90,7 @@ Thor The Dark World| Marvel Studios| 0| 0| 6.9
 Adventure| Fantasy| Action| 
 Avengers Age of Ultron| Thor| 
 
-Vinland Saga| MAPPA| 48| 2| 8.8
+Vinland Saga| MAPPA| 48| 2| 9.25
 Adventure| Action| Drama| 
 Attack on Titan| 
 

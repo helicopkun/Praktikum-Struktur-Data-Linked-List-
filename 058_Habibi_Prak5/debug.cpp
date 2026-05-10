@@ -3,7 +3,7 @@
 
 // tes compile
 int main() {
-    // cout << "tes123\n";
+    // cout << "tes123\n";c
     load_movies();
     load_users();
 
@@ -23,9 +23,9 @@ int main() {
     // menu_search(u, "exact"); working
     // menu_search(u, "match"); working
     // menu_all_movies(u, "Film"); working
-    // menu_all_movies(u, "Series"); //BROKEN
+    // menu_all_movies(u, "Series"); working
     // menu_all_movies(u, "Film / Series"); working
-    menu_tambah_movie();
+    // menu_tambah_movie(); working
 
     // cout << "\n\nCompiled";
 }

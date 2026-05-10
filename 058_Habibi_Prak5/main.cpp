@@ -5,8 +5,6 @@ int main() {
     load_users();
 
     User* u = login_menu();
-
-    
     main_menu(u);
 
 }
