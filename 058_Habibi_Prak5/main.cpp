@@ -5,6 +5,7 @@ int main() {
     load_users();
 
     User* u = login_menu();
+    system("cls");
     main_menu(u);
 
 }

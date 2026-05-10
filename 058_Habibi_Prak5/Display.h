@@ -256,7 +256,7 @@ void menu_all_movies (User* u, string method) { //method = ["Film", "Series", "F
 }
 
 void menu_search (User* u, string option) { // option = ["match", "exact"]
-    cout << "==== Search Film / Series ====\n";
+    cout << "==== Search Film / Series "<< option <<" ====\n";
     string keyword = input_name("Nama movie: ");
     cout << "\n\n";
     if (option == "match") {
@@ -267,8 +267,7 @@ void menu_search (User* u, string option) { // option = ["match", "exact"]
         if (count == 0) {
             cout << "No matches found.\n";
             press_enter();
-            system("cls");
-            return menu_search(u, option);
+            return;
         }
         string headline = "Matching result for " + keyword;
         int idx = 0;
@@ -280,8 +279,7 @@ void menu_search (User* u, string option) { // option = ["match", "exact"]
         if(!result){
             cout << "No Movie with the name - " << keyword << '\n';
             press_enter();
-            system("cls");
-            return menu_search(u, option);
+            return;
         }
         tampil_movie_detail(result);
 
