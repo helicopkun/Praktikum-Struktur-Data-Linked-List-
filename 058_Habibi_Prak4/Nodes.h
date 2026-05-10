@@ -1,49 +1,54 @@
 #ifndef NODES_H
 #define NODES_H
 
-#include <string>
-using namespace std;
+#include "HashTable.h"
 
-struct Service;
-struct Customer;
+struct Genre;
+struct Movies;
+struct RatingEntry;
+struct User;
 
-struct Customer {
-    string nama, umur, gender, nomor_telepon, alamat;
-    Service* HeadServiceDone = NULL; //last in - first out (data terakhir = riwayat pertama)
-    Service* TailServiceDone = NULL;
-    Service* HeadServiceDue = NULL; //first in - first out (data pertama = servis pertama montir)
-    Service* TailServiceDue = NULL;
-    Customer* next = NULL;
-    Customer* prev = NULL;
-}; //rupanya bisa deklarasi NULL dari awal bruh
+struct Genre {
+    string nama;
+    HashTable movies; // key: Movies->nama,  value: Movies*
 
-struct Service {
-    string model_mobil, merek_mobil, deskripsi_kendala, nama_montir, tanggal, kepentingan;
-    Customer* dataCustomer = NULL;
-    Service* next = NULL; //servis per customer
-    Service* prev = NULL;
-    Service* allnext = NULL; //semua servis
-    Service* allprev = NULL; 
+    Genre(string n): nama(n) {}
 };
 
-struct Montir {
-    string namaMontir;
-    int index;
-    Montir* next = NULL;
-    Service* kerjaTerpentingDue = NULL;
+struct Movies {
+    string nama, studio;
+    int jumlah_episode = 0, jumlah_season = 0;
+    float total_rating = 0.0f;
+
+    HashTable film_terkait; // key: Movies->nama,  value: Movies*
+    HashTable genres;       // key: Genre->nama,   value: Genre*
+    HashTable rated_by;     // key: User->nama,  value: RatingEntry*
+
+    Movies* left = nullptr; 
+    Movies* right = nullptr;
+    
+    bool is_film() {
+        return jumlah_episode == 0 && jumlah_season == 0;
+    }
+    Movies(string n, string st, int e, int ss, float r): nama(n), studio(st), jumlah_episode(e), jumlah_season(ss), total_rating(r) {}
 };
 
-Customer* headCustomer = NULL; //first in - first out (data terakhir = customer terakhir)
-Customer* tailCustomer = NULL;
+struct RatingEntry {
+    float rate = 0.0f;
+    Movies* movie = nullptr;
 
-Service *headHistoryDue = NULL; //first in - first out (data pertama = servis pertama montir)
-Service *tailHistoryDue = NULL;
+    RatingEntry(float r, Movies* m): rate(r), movie(m) {}
+};
 
-Service *headUndo = NULL; //last in - first out
+struct User {
+    string  nama, password;
+    HashTable rated; // key: Movies->nama, value: RatingEntry*
+    bool isAdmin = false;
+    User(string n, string p): nama(n), password(p) {}
+};
 
-Service *headHistoryDone = NULL; //last in - first out (data terakhir = riwayat pertama)
-Service *tailHistoryDone = NULL;
-
-Montir* headMontir = NULL; //first in - first out
+Movies* BST = nullptr; // global movie, sorted via names (Binary Search Tree)
+HashTable Genres;      // global genre hashtable, key: Genre->nama, value: Genre*
+HashTable Users;       // global user hashtable, key: User->nama, value: User*
 
 #endif

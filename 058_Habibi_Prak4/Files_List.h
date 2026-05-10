@@ -2,182 +2,228 @@
 #define FILES_H
 
 #include "Linked_List.h"
+#include <iostream>
 #include <fstream>
 
-// Files + Linked_list Helper
-
-void ReadFiles() {
-        ifstream data_customer("../data_customer.txt"); // FIFO
-    string namaC, umur, gender, nomor_teleponC, alamat, kosong1;
-    while (getline(data_customer, namaC) && namaC != "") {
-        getline(data_customer, umur);
-        getline(data_customer, gender);
-        getline(data_customer, nomor_teleponC);
-        getline(data_customer, alamat);
-        getline(data_customer, kosong1);
-        
-        Customer *baruCustomer = new Customer;
-
-        baruCustomer->nama = namaC;
-        baruCustomer->umur = umur;
-        baruCustomer->gender = gender;
-        baruCustomer->nomor_telepon = nomor_teleponC;
-        baruCustomer->alamat = alamat;
-        if (headCustomer == NULL) {
-            headCustomer = tailCustomer = baruCustomer;
-        } else {
-            baruCustomer->prev = tailCustomer;
-            tailCustomer->next = baruCustomer;
-            tailCustomer = baruCustomer;
-        }
+// ── Read ───────────────────────────
+void load_movies() {
+    ifstream file("../movies.txt");
+    if (!file.is_open()) {
+        cout << "Error: cannot open file movies.txt\n";
+        return;
     }
-    data_customer.close();
+    string curLine;
+    char nama[100], studio[100], genreLine[500], relLine[500];
+    int   ep, season;
+    float rating;
 
-    //link data servis -> data customer
-    ifstream data_DueService("../data_DueService.txt"); //FIFO - queue
-    string namaSdue, model_mobil_due, merek_mobil_due, deskripsi_kendala_due, nama_montir_due, tanggaldue, kepentingan, kosong3;
-    while (getline(data_DueService, namaSdue) && namaSdue != "") {  
-        getline(data_DueService, model_mobil_due);  
-        getline(data_DueService, merek_mobil_due);
-        getline(data_DueService, deskripsi_kendala_due);
-        getline(data_DueService, nama_montir_due);
-        getline(data_DueService, tanggaldue);
-        getline(data_DueService, kepentingan);
-        getline(data_DueService, kosong3);
+    // ── add new movie + genre ──────────────────────────
+    while (getline(file, curLine)) {
+        if (curLine.empty()) continue;
 
-        Service *newDue = new Service;
+        // ── movie line ──
+        sscanf(curLine.c_str(), "%[^|]| %[^|]| %d| %d| %f", 
+                                nama, studio, &ep, &season, &rating);
+
+        Movies* newM = new Movies(nama, studio, ep, season, rating);
+        add_movie_to_BST(BST, newM);
         
-        newDue->model_mobil = model_mobil_due;
-        newDue->merek_mobil = merek_mobil_due;
-        newDue->deskripsi_kendala = deskripsi_kendala_due;
-        newDue->nama_montir = nama_montir_due;
-        newDue->tanggal = tanggaldue;
-        newDue->kepentingan = kepentingan;
-
-        Customer* cur = headCustomer; //cur = cursor customer 
-        while(cur != NULL){
-            if (cur->nama == namaSdue) {
-                AddDueList(newDue, cur);
-                break;
+        // ── genre line ──
+        getline(file, curLine);
+        string genre = "";
+        Genre* g = nullptr;
+        
+        for (int i = 0; i < curLine.size(); i++) {
+            if (curLine[i] == '|') {
+                if (!Genres.is_exist(genre)){
+                    g = new Genre(genre);
+                    add_genre_to_table(g);
+                } else {
+                    g = (Genre*) Genres.get_exact(genre);
+                }
+                link_genre_to_movie(g, newM);
+                genre = "";
+                i++;  // skip space after |
+            } else {
+                genre += curLine[i];
             }
-            cur = cur->next;
         }
+        
+        getline(file, curLine); // skip relation line, empty until BST is completed
     }
-    data_DueService.close();
 
-    ifstream data_DoneService("../data_DoneService.txt"); //LIFO - stack
-    string namaSdone, model_mobil_done, merek_mobil_done, deskripsi_kendala_done, nama_montir_done, tanggaldone, kosong2;
-    while (getline(data_DoneService, namaSdone) && namaSdone != "") {
-        getline(data_DoneService, model_mobil_done);    
-        getline(data_DoneService, merek_mobil_done);
-        getline(data_DoneService, deskripsi_kendala_done);
-        getline(data_DoneService, nama_montir_done);
-        getline(data_DoneService, tanggaldone);
-        getline(data_DoneService, kosong2);
-        
-        Service *newDone = new Service;
-        
-        newDone->model_mobil = model_mobil_done;
-        newDone->merek_mobil = merek_mobil_done;
-        newDone->deskripsi_kendala = deskripsi_kendala_done;
-        newDone->nama_montir = nama_montir_done;
-        newDone->tanggal = tanggaldone;
+    // Movies* list[100] = {}; //list works
+    // int count = 0;
+    // get_all_movie_BST(BST, list, count, "Film / Series");
+    // for (int i = 0; i < count; i++) {
+    //     cout << list[i]->nama << "-list\n";
+    // }
 
-        Customer* cur = headCustomer; //cur = cursor customer
-        while(cur != NULL){
-            if (cur->nama == namaSdone) {
-                AddDoneList(newDone, cur);
-                break;
+    file.clear();
+    file.seekg(0, std::ios::beg); //reset file ptr to beginning
+
+    // ── link related movie ────────────────────────────
+    while (getline(file, curLine)) {
+        if (curLine.empty()) continue;
+
+        // ── movie line ──
+        sscanf(curLine.c_str(), "%[^|]|", nama);
+        // cout << endl << nama << "2nd\n"; //debug
+        Movies* cur = search_movie_BST(BST, get_key(nama));
+        getline(file, curLine); // skip genre line
+        
+        // ── related line ───
+        getline(file, curLine);
+        string related_name = "";
+        Movies* U = nullptr;
+        
+        for (int i = 0; i < curLine.size(); i++) {
+            if (curLine[i] == '|') {
+                // cout << related_name << " and " << cur->nama << endl; //debug
+                if (!cur->film_terkait.is_exist(related_name)) {
+                    
+                    U = search_movie_BST(BST, get_key(related_name));
+                    if (U) link_movie_to_universe(cur, U);
+                }
+                related_name = "";
+                i++; // skip space after |
+            } else {
+                related_name += curLine[i];
             }
-            cur = cur->next;
+        }
+        
+    }
+}
+
+void load_users() {
+    ifstream file("../users.txt");
+    if (!file.is_open()) {
+        cout << "Error: cannot open file users.txt\n";
+        return;
+    }
+    string curLine;
+    char nama[100], password[100];
+
+    while (getline(file, curLine)) {
+        if (curLine.empty()) continue;
+
+        sscanf(curLine.c_str(), "%[^|]| %s", nama, password);
+        User* newU = new User(nama, password);
+        add_user_to_table(newU);
+
+        getline(file, curLine);
+        string  movie_name = "", 
+                rating_str = "";
+        Movies* m = nullptr;
+        for (int i = 0; i < curLine.size(); i++) {
+            if (curLine[i] == '>') {
+                i += 2; //skip space before rating
+                while(curLine[i] != '|') {
+                    rating_str += curLine[i];
+                    i++;
+                }
+                m = search_movie_BST(BST, get_key(movie_name));
+                if (m) link_userRate_to_movie(newU, m, stof(rating_str));
+                
+                movie_name = rating_str = "";
+                i++; // skip space after |
+            } else {
+                movie_name += curLine[i];
+            }
         }
     }
-    data_DoneService.close();
-
 }
 
-void NewMontirFile(string nama) {
-    ofstream nama_montir ("../Nama_Montir.txt", ios::app);
-    nama_montir << nama << endl;
-    nama_montir.close();
-}
 
-void AddCustomerFile(Customer* customer) {
-    if (headCustomer == NULL) {
-        headCustomer = tailCustomer = customer;
-    } else {
-        customer->prev = tailCustomer;
-        tailCustomer->next = customer;
-        tailCustomer = customer;
+
+
+// ── Write ───────────────────────────
+void save_movies_BST(ofstream& file, Movies* root) { //pre-order (avoid sorting alphabetically)
+    if (!root) return;
+
+    // ── movie line ────────────────────────────────
+    file << root->nama            << "| "
+         << root->studio          << "| "
+         << root->jumlah_episode  << "| "
+         << root->jumlah_season   << "| "
+         << root->total_rating    << "\n";
+
+    // ── genre line ───────────────────────────────
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        Entry* e = root->genres.bucket[i];
+        while (e) {
+            file << ((Genre*)e->value)->nama << "| ";
+            e = e->next;
+        }
     }
-    ofstream data_customer("../data_customer.txt", ios::app);
-    data_customer 
-    << customer->nama << endl 
-    << customer->umur << endl 
-    << customer->gender << endl 
-    << customer->nomor_telepon << endl 
-    << customer->alamat << endl << endl;
-    data_customer.close();
-}
+    file << "\n";
 
-void AddDueFile(Service* baru, Customer* Pelanggan){
-    AddDueList(baru, Pelanggan);
-
-    ofstream data_DueService("../data_DueService.txt", ios::app);
-    data_DueService 
-    << baru->dataCustomer->nama << endl 
-    << baru->model_mobil << endl 
-    << baru->merek_mobil << endl 
-    << baru->deskripsi_kendala << endl 
-    << baru->nama_montir << endl
-    << baru->tanggal << endl 
-    << baru->kepentingan << endl << endl;
-    data_DueService.close();
-}
-
-void RewriteDue() {
-    ofstream data_DueService("../data_DueService.txt", ios::trunc); //rewrite file due
-    Service* cur = headHistoryDue;
-    while (cur != NULL) {
-        data_DueService << cur->dataCustomer->nama << endl
-            << cur->model_mobil << endl
-            << cur->merek_mobil << endl
-            << cur->deskripsi_kendala << endl
-            << cur->nama_montir << endl
-            << cur->tanggal << endl
-            << cur->kepentingan << endl << endl;
-        cur = cur->allnext; // Jalan ke servis berikutnya di antrean
+    // ── relation line ────────────────────────────
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        Entry* e = root->film_terkait.bucket[i];
+        while (e) {
+            file << ((Movies*)e->value)->nama << "| ";
+            e = e->next;
+        }
     }
-    data_DueService.close();
+    file << "\n\n";
+
+    save_movies_BST(file, root->left);
+    save_movies_BST(file, root->right);
 }
 
-void RemoveDue(Service* servis){
-    ReLinkDue(servis);
-    RewriteDue();
-}
-
-void AddDoneFile(Service* selesai){
-    AddDoneList(selesai, selesai->dataCustomer);
-
-    ofstream data_DoneService ("../data_DoneService.txt", ios::app); //terbaru di akhir data
-    data_DoneService << 
-    selesai->dataCustomer->nama << endl <<
-    selesai->model_mobil << endl <<
-    selesai->merek_mobil << endl <<
-    selesai->deskripsi_kendala << endl <<
-    selesai->nama_montir << endl <<
-    selesai->tanggal << endl << endl;
-}
-
-void ReadAllMontir() { //baca semua nama montir dalam file dan di simpan ke linkedlist
-    ResetMontir();
-    ifstream data_montir ("../Nama_Montir.txt");
-    string namaMontir, space;
-    while (getline(data_montir, namaMontir) && namaMontir != "") {
-        getline(data_montir, space);
-        NewMontirToList(namaMontir); //tambah montir
+void save_movies() { // rewrite
+    ofstream file("../movies.txt");
+    if (!file.is_open()) {
+        cout << "Error: cannot open file movies.txt\n";
+        return;
     }
-    data_montir.close();
+    save_movies_BST(file, BST);
+    file.close();
+}
+
+
+void write_user(ofstream& file, User* u) {
+    file << u->nama << "| " 
+         << u->password << '\n';
+
+    for (int j = 0; j < TABLE_SIZE; j++) {
+        Entry* e = u->rated.bucket[j];
+        while (e) {
+            RatingEntry* r = (RatingEntry*) e->value;
+            file << r->movie->nama << "> "
+                    << r->rate << "| ";
+            e = e->next;
+        }
+    }
+    file << "\n\n";
+}
+
+void append_user(User* u) { //app
+    ofstream file("../users.txt", ios::app);
+    if (!file.is_open()) {
+        cout << "Error: cannot open file\n";
+        return;
+    }
+    write_user(file, u);
+    file.close();
+}
+
+void save_users() { //rewrite
+    ofstream file("../users.txt");
+    if (!file.is_open()) {
+        cout << "Error: cannot open file users.txt\n";
+        return;
+    }
+    
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        Entry* e = Users.bucket[i];
+        while (e) {
+            write_user(file, (User*)e->value);
+            e = e->next;
+        }
+    }
+    file.close();
 }
 
 #endif

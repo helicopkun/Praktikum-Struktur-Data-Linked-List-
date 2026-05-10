@@ -1,10 +1,10 @@
 #include "Menu.h"
 
+
+// tes compile
 int main() {
+    cout << "tes123\n";
     load_movies();
     load_users();
-
-    User* u = login_menu();
-    main_menu(u);
-
+    cout << "\n\nCompiled";
 }

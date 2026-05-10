@@ -1,5 +1,5 @@
 #ifndef MENU_H
-#define MENU
+#define MENU_H
 
 #include "Display.h"
 
@@ -7,102 +7,79 @@ bool keluarAdmin = false,
      keluar = false;
 
 //------------------------------------------ Menus ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
-void MenuServisAdmin() {
-    string pilihan;
-            cout << R"(====== Services ======
-Pilih menu?
-1. Semua Servis Singkat
-2. Servis Baru
-3. Selesaikan Pekerjaan
-4. Riwayat Kerja Montir
-5. Ganti Tanggal Ambil
+void main_menu(User* u) {
+    cout << R"(==== Wordboxd ====
+1. Genre
+2. Search Film / Series
+3. Search Film / Series (Approx)
+4. Semua Film
+5. Semua Series
+6. Semua Film / Series)";
+    if (u->isAdmin) cout << "\n7. Tambah Film / Series";
+    cout << "\n\n";
+    int max = 6;
+    if (u->isAdmin) max = 7;
+    int pilihan = input_idx("Pilihan: ", 1, max);
 
-Pilihan: )";
-    cin >> pilihan;
-    cin.ignore();
     system("cls");
-    if (pilihan == "1") AntrianDisplay();
-    else if (pilihan == "2") NewService();
-    else if (pilihan == "3") DisplayFinishJob();
-    else if (pilihan == "4") DisplayJobsHistory();
-    else if (pilihan == "5") DisplayReschedule();
-    else cout << "Pilihan tidak valid!\n\n";
-    // cin.ignore(1000, '\n');
+    if      (pilihan == 1) menu_genre(u);
+    else if (pilihan == 2) menu_search(u, "exact");
+    else if (pilihan == 3) menu_search(u, "match");
+    else if (pilihan == 4) menu_all_movies(u, "Film");
+    else if (pilihan == 5) menu_all_movies(u, "Series");
+    else if (pilihan == 6) menu_all_movies(u, "Film / Series");
+    else if (pilihan == 7 && u->isAdmin) menu_tambah_movie();
+
+    main_menu(u);
 }
 
-void MenuAdmin() {
+User* register_menu(string name) {
     system("cls");
-    string pilihan;
-    cout << R"(====== Welcome To Lognuts ======
-Pilih Menu?
+    cout << "==== Register Page ====\n";
+    cout << "Username: " << name << endl;
+    string pw = input_name("Password: ");
 
-1. Servis
-2. Pelanggan Baru
-3. Montir Baru
-4. Keluar
+    User* newU = new User(name, pw);
+    add_user_to_table(newU);
+    append_user(newU);
+    cout << "User telah berhasil terdaftar!\n";
+    press_enter();
 
-Pilihan : )";
-    cin >> pilihan;
-    cin.ignore();
-    system("cls");
-    if (pilihan == "1") MenuServisAdmin();
-    else if (pilihan == "2") 
-        if (!NewCustomer(true))
-            cout << "\nPelanggan telah terdaftar\n\n";
-    else if (pilihan == "3") NewMontir();
-    else if (pilihan == "4") keluarAdmin = true;
-    
-    else cout << "Pilihan tidak valid!\n\n";
-    
-    cin.ignore(1000, '\n');
-    cout << "Press enter to go back...";
-    cin.get();
+    return newU;
 }
 
-void MenuCustomer(string namaCustomer) {
-    Customer* curCustomer = headCustomer;
-    while(curCustomer != NULL) { //cek customer yang mana
-        if (curCustomer->nama == namaCustomer) break;
-        curCustomer = curCustomer->next;
-    }
-
+User* login_menu() {
     system("cls");
-    string pilihan;
-    cout << "====== Welcome " << namaCustomer << " ======";
-    cout << R"(
-Pilih menu!
-
-1. Antrian Anda
-2. Booking Servis
-3. Batalkan Servis
-4. Undo Pembatalan
-5. Riwayat Servis
-6. Keluar
-
-Pilihan: )";
-    cin >> pilihan;
-    cin.ignore();
-    cout << endl;
-    
-    if (pilihan == "1") AntrianDisplay(curCustomer);
-    else if (pilihan == "2") NewService(curCustomer);
-    else if (pilihan == "3") CancelService(curCustomer);
-    else if (pilihan == "4") UndoCancelService(curCustomer);
-    else if (pilihan == "5") RiwayatCustomer(curCustomer);
-    else if (pilihan == "6") {
-        while (headUndo != NULL) { //reset list Undo
-        Service* temp = headUndo;
-        headUndo = headUndo->next;
-        delete temp;
+    cout << "==== Login Page ====\n";
+    string name = input_name("Username: ");
+    if (name == "akuadmin727" || name == "admin") {
+        User* admin = new User(">_<", "^ v ^");
+        admin->isAdmin = true;
+        return admin;
     }
-        keluar = true;
-        return;
-    }
-    else cout << "Pilihan tidak valid!\n\n";
 
-    cin.ignore(1000, '\n');
-    cout << "Press enter to go back...";
-    cin.get();
+    if (!Users.is_exist(name)) {
+        cout << "\n\n";
+        string pilihan = input_name("Username doesnt exist, Register?\n\n[Y]es, [N]o\nPilihan: ");
+        pilihan = get_key(pilihan);
+        if      (pilihan == "y" || pilihan == "yes") return register_menu(name);
+        else if (pilihan == "n" || pilihan == "no"){}
+        else    {cout << "Invalid input"; press_enter();}
+        return login_menu();
+    }
+
+    string pw = input_name("Password: ");
+    User* u = (User*)Users.get_exact(name);
+
+    if (u->password != pw) {
+        cout << "Bozo forgot their pw lmao\n";
+        press_enter();
+        return login_menu();
+    }
+
+    return u;
 }
+
+
 
 #endif
