@@ -19,7 +19,7 @@ void load_movies() {
 
     // ── add new movie + genre ──────────────────────────
     while (getline(file, curLine)) {
-        if (curLine.empty()) continue;
+        if (trim(curLine).empty()) continue;
 
         // ── movie line ──
         sscanf(curLine.c_str(), "%[^|]| %[^|]| %d| %d| %f", 
@@ -64,7 +64,7 @@ void load_movies() {
 
     // ── link related movie ────────────────────────────
     while (getline(file, curLine)) {
-        if (curLine.empty()) continue;
+        if (trim(curLine).empty()) continue;
 
         // ── movie line ──
         sscanf(curLine.c_str(), "%[^|]|", nama);
@@ -105,13 +105,15 @@ void load_users() {
     char nama[100], password[100];
 
     while (getline(file, curLine)) {
-        if (curLine.empty()) continue;
+        if (trim(curLine).empty()) continue;
 
         sscanf(curLine.c_str(), "%[^|]| %s", nama, password);
         User* newU = new User(nama, password);
         add_user_to_table(newU);
 
         getline(file, curLine);
+        if (trim(curLine).empty()) continue;
+
         string  movie_name = "", 
                 rating_str = "";
         Movies* m = nullptr;

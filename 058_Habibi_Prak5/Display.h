@@ -77,10 +77,11 @@ void tampil_movie_detail(Movies* m) {
         if (!list_genre[i]) break;
         cout << list_genre[i]->nama << ", ";
     }
+    cout << '\n';
     if (m->is_film()) {
         cout << "Jumlah ep: -\nJumlah season: -\n";
     } else {
-        cout << "Jumlah ep: "<< m->jumlah_episode
+        cout << "Jumlah ep: "<< m->jumlah_episode << '\n'
              << "Jumlah season: " << m->jumlah_season << '\n';
     }
     cout << "Film yang terkait:\n";
@@ -276,6 +277,11 @@ void menu_search (User* u, string option) { // option = ["match", "exact"]
     }
     else if (option == "exact") {
         Movies* result = search_movie_BST(BST, get_key(keyword));
+        if(!result){
+            cout << "No Movie with the name - " << keyword << '\n';
+            press_enter();
+            return;
+        }
         tampil_movie_detail(result);
 
         string prompt = "[C]lose, [R]ate\nPilihan: ";

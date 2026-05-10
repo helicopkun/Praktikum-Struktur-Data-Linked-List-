@@ -1,18 +1,18 @@
 john| pass123
-Iron Man> 9.0| The Avengers> 8.5| Inception> 10.0| The Dark Knight> 9.5| Interstellar> 8.0| Breaking Bad> 9.5| 
- 
-jane| qwerty
-Breaking Bad> 10.0| Better Call Saul> 9.5| Attack on Titan> 9.0| Avengers Endgame> 8.0| Avengers Infinity War> 8.5| 
- 
-bob| hunter2
-Iron Man> 7.5| Iron Man 2> 6.5| Iron Man 3> 7.0| Thor> 8.0| Thor The Dark World> 6.0| The Avengers> 9.0| Avengers Age of Ultron> 7.0| 
- 
-alice| p4ssw0rd
-Inception> 9.5| Tenet> 7.0| Interstellar> 9.0| The Dark Knight> 10.0| Batman Begins> 8.5| The Dark Knight Rises> 8.0| 
- 
-charlie| abc123
-Avengers Infinity War> 8.0| Avengers Endgame> 8.5| Avengers Age of Ultron> 7.0| Attack on Titan> 10.0| Vinland Saga> 9.0| Better Call Saul> 8.5| 
- 
-HelicopKun| 2020
+The Dark Knight> 9.5| Inception> 10| Interstellar> 8| Breaking Bad> 9.5| Iron Man> 9.2| The Avengers> 8.5| 
 
+HelicopKun| 2020
+Avengers Endgame> 10| Iron Man> 8.9| Captain America The First Avenger> 9.3| 
+
+charlie| abc123
+Avengers Age of Ultron> 7| Better Call Saul> 8.5| Vinland Saga> 9| Avengers Endgame> 8.5| Avengers Infinity War> 8| Attack on Titan> 10| 
+
+alice| p4ssw0rd
+The Dark Knight> 10| Inception> 9.5| The Dark Knight Rises> 8| Tenet> 7| Batman Begins> 8.5| Interstellar> 9| 
+
+bob| hunter2
+Avengers Age of Ultron> 7| Thor> 8| Iron Man> 7.5| Iron Man 2> 6.5| Iron Man 3> 7| The Avengers> 9| Thor The Dark World> 6| 
+
+jane| qwerty
+Better Call Saul> 9.5| Avengers Endgame> 8| Avengers Infinity War> 8.5| Breaking Bad> 10| Attack on Titan> 9| 
 

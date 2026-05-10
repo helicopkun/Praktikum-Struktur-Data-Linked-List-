@@ -4,6 +4,12 @@
 using namespace std;
 #include <string>
 
+string trim(const string& s) {
+    int start = s.find_first_not_of(" \t\n\r");
+    int end   = s.find_last_not_of(" \t\n\r");
+    return (start == string::npos) ? "" : s.substr(start, end - start + 1);
+}
+
 string get_key(const string& text) {
     string newtext = "";
     for (char c : text) {
