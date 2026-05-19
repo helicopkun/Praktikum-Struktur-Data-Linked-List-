@@ -25,7 +25,7 @@ void add_movie_to_BST(Movies*& root, Movies* m) {
         root = m;
         return;
     }
-    string nama = get_key(m->nama);
+    string nama = get_key(m->nama); 
     string key = get_key(root->nama);
     if (nama < key) add_movie_to_BST(root->left, m);
     else            add_movie_to_BST(root->right, m); 

@@ -186,6 +186,7 @@ void menu_tambah_movie() {
     if (!valid) {
         cout << "Tidak ada Genre yang terdaftar, Movie gagal di daftarkan";
         delete newM;
+        press_enter();
         return;
     }
 
@@ -212,6 +213,7 @@ void menu_tambah_movie() {
     }
     cout << newM->nama << " kini terdaftar ke database!\n";
     save_movies();
+    press_enter();
 }
 
 void menu_genre (User* u) {

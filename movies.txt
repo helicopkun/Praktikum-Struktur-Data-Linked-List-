@@ -12,7 +12,7 @@ Captain America The Winter Soldier| Avengers Infinity War| The Avengers| Thor Th
 
 Attack on Titan| MAPPA| 87| 4| 9
 Fantasy| Action| Drama| 
-Vinland Saga| 
+Vinland Saga| Demon Slayer Mugen train| Demon Slayer| 
 
 Avengers Infinity War| Marvel Studios| 0| 0| 8.4
 Adventure| Sci-Fi| Action| 
@@ -50,6 +50,14 @@ Cyberpunk Edgerunner| TRIGGER| 24| 1| 0
 Sci-Fi| Action| Thriller| 
 
 
+Demon Slayer| MAPPA| 70| 4| 0
+Action| Thriller| Drama| 
+Demon Slayer Mugen train| Attack on Titan| 
+
+Demon Slayer Mugen train| MAPPA| 0| 0| 0
+Action| Drama| 
+Demon Slayer| Attack on Titan| 
+
 Iron Lung| Troublemaker Studios| 0| 0| 9.35
 Thriller| Horror| 
 
@@ -70,7 +78,7 @@ Tenet| Syncopy| 0| 0| 7.3
 Sci-Fi| Action| Thriller| 
 Inception| Interstellar| 
 
-Running in the 90's| Cowboy Studio| 50| 4| 0
+Running in the 90's| Cowboy Studio| 50| 4| 6
 Adventure| Action| 
 
 
