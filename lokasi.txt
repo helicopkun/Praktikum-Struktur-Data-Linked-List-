@@ -1,0 +1,10 @@
+Surabaya|Sidoarjo:2|Pasuruan:1|
+Malang|Pasuruan:2|Blitar:5|
+Sidoarjo|Mojokerto:7|
+Mojokerto|Surabaya:2|
+Gresik|Pasuruan:7|
+Pasuruan|Mojokerto:3|
+Probolinggo|Sidoarjo:2|
+Jombang|Mojokerto:10|
+Kediri|Pasuruan:3|Mojokerto:10|Surabaya:5|
+Blitar|Sidoarjo:2|Pasuruan:5|

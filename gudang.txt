@@ -1,0 +1,107 @@
+Gudang Gresik,Gresik
+Beras|100
+Lilin|200
+Mie Instan|300
+Saus Tomat|140
+Minyak Kayu Putih|80
+Korek Api|50
+Gula Pasir|120
+eol
+
+Gudang Blitar,Blitar
+Kopi Bubuk|150
+Coklat Batang|130
+Sirup|100
+Kerupuk|260
+Susu UHT|180
+Permen|300
+Air Mineral|450
+eol
+
+Gudang Sidoarjo,Sidoarjo
+Black Berry|100
+Sabun Mandi|200
+Kecap Manis|110
+Detergen|175
+Pewangi Pakaian|130
+Sabun Cuci Piring|160
+Sampo|150
+Air Mineral|500
+eol
+
+Gudang Kediri,Kediri
+Beras|300
+Tepung Terigu|220
+Mie Instan|280
+Sabun Mandi|170
+Garam|150
+Detergen|200
+Gula Pasir|250
+eol
+
+Gudang tambahan,Blitar
+Pewangi Pakaian|0
+Air Mineral|0
+eol
+
+Gudang Mojokerto,Mojokerto
+Beras|250
+Tepung Terigu|200
+Minyak Goreng|180
+Sabun Mandi|120
+Kerupuk|175
+Detergen|150
+Teh Celup|200
+eol
+
+Gudang Pasuruan,Pasuruan
+Biskuit|160
+Kecap Manis|110
+Saus Tomat|110
+Sirup|85
+Susu UHT|183
+Gula Pasir|280
+Permen|240
+eol
+
+Gudang Probolinggo,Probolinggo
+Tepung Terigu|0
+Lilin|180
+Kopi Bubuk|120
+Mie Instan|350
+Garam|280
+Teh Celup|150
+Korek Api|380
+Air Mineral|600
+eol
+
+Gudang Surabaya,Surabaya
+Beras|150
+Tepung Terigu|180
+Kopi Bubuk|90
+Minyak Goreng|120
+Garam|300
+Susu UHT|75
+Gula Pasir|200
+eol
+
+Gudang Malang,Malang
+Biskuit|250
+Mie Instan|295
+Coklat Batang|140
+Kerupuk|310
+Sirup|95
+Teh Celup|150
+Permen|220
+eol
+
+Gudang Jombang,Jombang
+Minyak Goreng|200
+Biskuit|220
+Coklat Batang|160
+Minyak Kayu Putih|95
+Sabun Cuci Piring|190
+Pewangi Pakaian|110
+Sampo|140
+eol
+

@@ -1,0 +1,8 @@
+withdraw|Korek Api|Gudang Probolinggo|20
+
+withdraw|Mie Instan|Gudang Malang|75
+
+withdraw|Gula Pasir|Gudang Pasuruan|20
+
+transferee|Kecap Manis|Gudang Sidoarjo|30
+

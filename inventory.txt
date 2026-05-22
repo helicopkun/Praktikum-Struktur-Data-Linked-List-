@@ -1,0 +1,27 @@
+Probolinggo
+Beras|800
+Air Mineral|1550
+Gula Pasir|850
+Garam|730
+Biskuit|630
+Coklat Batang|430
+Black Berry|100
+Detergen|525
+Tepung Terigu|600
+Minyak Goreng|500
+Kopi Bubuk|360
+Kerupuk|745
+Kecap Manis|250
+Mie Instan|1225
+Lilin|380
+Korek Api|430
+Susu UHT|438
+Permen|760
+Minyak Kayu Putih|175
+Sirup|280
+Sabun Mandi|490
+Pewangi Pakaian|240
+Sabun Cuci Piring|350
+Sampo|290
+Saus Tomat|250
+Teh Celup|500
