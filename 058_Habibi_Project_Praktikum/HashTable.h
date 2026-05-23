@@ -111,7 +111,7 @@ struct HashTable {
         string key = get_key(input_key);
         unsigned int idx = hashing(key);
         Entry<T>* cur = bucket[idx];
-        Entry<T>* prev;
+        Entry<T>* prev = nullptr;
         while (cur) {
             prev = cur;
             if (cur->key == key) {

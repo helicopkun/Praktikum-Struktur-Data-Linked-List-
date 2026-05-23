@@ -306,7 +306,6 @@ void save_queued() {
         cout << "Error: cannot open file queued.txt\n";
         return;
     }
-    int count = 0;
     Node<QueuedBarang*>* cur = inventory.queue_head;
     while (cur) {
         file << cur->data->tipe_proses << "|"
@@ -315,7 +314,6 @@ void save_queued() {
              << cur->data->jumlah
              << "\n\n";
         cur = cur->next;
-        count++;
     }
     file.close();
 }
