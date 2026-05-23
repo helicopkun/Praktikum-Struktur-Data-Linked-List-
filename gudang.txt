@@ -5,7 +5,7 @@ Mie Instan|300
 Saus Tomat|140
 Minyak Kayu Putih|80
 Korek Api|50
-Gula Pasir|120
+Gula Pasir|20
 eol
 
 Gudang Blitar,Blitar
@@ -21,7 +21,7 @@ eol
 Gudang Sidoarjo,Sidoarjo
 Black Berry|100
 Sabun Mandi|200
-Kecap Manis|110
+Kecap Manis|30
 Detergen|175
 Pewangi Pakaian|130
 Sabun Cuci Piring|160

@@ -119,7 +119,7 @@ struct Inventory {
 
     QueuedBarang* dequeue_demand(string tipe_proses) {
         if (!queue_head) return nullptr;
-        Node<QueuedBarang*>* cur = queue_head, *prev = queue_head;
+        Node<QueuedBarang*>* cur = queue_head, *prev = nullptr;
         
         while (cur && cur->data->tipe_proses != tipe_proses) {
             prev = cur;

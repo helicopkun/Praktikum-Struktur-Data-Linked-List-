@@ -1,4 +1,4 @@
-Probolinggo
+Kediri
 Beras|800
 Air Mineral|1550
 Gula Pasir|850
@@ -12,12 +12,13 @@ Minyak Goreng|500
 Kopi Bubuk|360
 Kerupuk|745
 Kecap Manis|250
-Mie Instan|1225
+Mie Instan|1150
 Lilin|380
-Korek Api|430
+Korek Api|410
 Susu UHT|438
 Permen|760
 Minyak Kayu Putih|175
+OLED Monitor|0
 Sirup|280
 Sabun Mandi|490
 Pewangi Pakaian|240
